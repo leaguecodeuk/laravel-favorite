@@ -33,9 +33,7 @@ trait Favoriteability
      */
     public function favorite($class)
     {
-        return $this->favorites()->where('favoriteable_type', $class)->with('favoriteable')->get()->mapWithKeys(function ($item) {
-            return [$item['favoriteable']->id=>$item['favoriteable']];
-        });
+        return $this->favorites()->where('favoriteable_type', $class)->with('favoriteable')->get()->pluck('favoriteable');
     }
 
     /**
